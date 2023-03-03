@@ -58,7 +58,10 @@ public boolean isValid(int r, int c)
 public int countMines(int row, int col)
 {
   int numMines = 0;
-  //your code here
+  for(int r = row - 1; r <= row + 1; r++)
+    for(int c = col - 1; c <= col + 1; c++)
+      if(isValid(r,c) && mines.contains(buttons[r][c]))
+        numMines++;
   return numMines;
 }
 public class MSButton
@@ -85,7 +88,39 @@ public class MSButton
   public void mousePressed () 
   {
     clicked = true;
-    //your code here
+    if(mouseButton == RIGHT)
+    {
+      flagged = !flagged;
+      if(flagged == false)
+        clicked = false;
+    }
+    else if(mines.contains(this))
+    {
+      displayLosingMessage();
+    }
+    else if(countMines(myRow,myCol) > 0)
+    {
+      setLabel(countMines(myRow,myCol));
+    }
+    else
+    {
+      if(isValid(myRow, myCol-1) && !mines.contains(buttons[myRow][myCol-1])){
+        buttons[myRow][myCol-1].mousePressed();
+      }
+      //down neighbor
+      if(isValid(myRow+1, myCol) && !mines.contains(buttons[myRow+1][myCol])){
+        buttons[myRow+1][myCol].mousePressed();
+      }
+      // up neighbor
+      if(isValid(myRow-1, myCol) && !mines.contains(buttons[myRow-1][myCol])){
+        buttons[myRow-1][myCol].mousePressed();
+      }
+      // right neighbor
+      if(isValid(myRow, myCol+1) && !mines.contains(buttons[myRow][myCol+1])){
+        buttons[myRow][myCol+1].mousePressed();
+      }
+    }
+      
   }
   public void draw () 
   {    
