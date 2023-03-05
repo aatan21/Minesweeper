@@ -1,12 +1,12 @@
 import de.bezier.guido.*;
 public final static int NUM_ROWS = 5;
-public final static int NUM_COLS = 5  ;
+public final static int NUM_COLS = 5;
 private MSButton[][] buttons; //2d array of minesweeper buttons
 private ArrayList <MSButton> mines = new ArrayList <MSButton>(); //ArrayList of just the minesweeper buttons that are mined
 
 void setup ()
 {
-  size(400, 400);
+  size(600, 600);
   textAlign(CENTER, CENTER);
 
   // make the manager
@@ -73,8 +73,8 @@ public class MSButton
 
   public MSButton ( int row, int col )
   {
-    width = 400/NUM_COLS;
-    height = 400/NUM_ROWS;
+    width = 600/NUM_COLS;
+    height = 600/NUM_ROWS;
     myRow = row;
     myCol = col; 
     x = myCol*width;
@@ -104,6 +104,7 @@ public class MSButton
     }
     else
     {
+      // left neighbor
       if(isValid(myRow, myCol-1) && !mines.contains(buttons[myRow][myCol-1])){
         buttons[myRow][myCol-1].mousePressed();
       }
@@ -118,6 +119,22 @@ public class MSButton
       // right neighbor
       if(isValid(myRow, myCol+1) && !mines.contains(buttons[myRow][myCol+1])){
         buttons[myRow][myCol+1].mousePressed();
+      }
+      // upper left corner neighbor
+      if(isValid(myRow-1, myCol-1) && !mines.contains(buttons[myRow-1][myCol-1])){
+        buttons[myRow-1][myCol-1].mousePressed();
+      }
+      // upper right corner neighbor
+      if(isValid(myRow-1, myCol+1) && !mines.contains(buttons[myRow-1][myCol+1])){
+        buttons[myRow-1][myCol+1].mousePressed();
+      }
+      // lower left corner neighbor
+      if(isValid(myRow+1, myCol-1) && !mines.contains(buttons[myRow+1][myCol-1])){
+        buttons[myRow+1][myCol-1].mousePressed();
+      }
+      // lower right corner neighbor
+      if(isValid(myRow+1, myCol+1) && !mines.contains(buttons[myRow+1][myCol+1])){
+        buttons[myRow+1][myCol+1].mousePressed();
       }
     }
       
