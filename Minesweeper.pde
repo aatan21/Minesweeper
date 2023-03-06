@@ -168,7 +168,7 @@ public class MSButton
       fill(255, 0, 0);
     }
     else if (clicked){
-      stroke(255);
+      stroke(55, 198, 255);
       fill( 0 );
     }
     else {
@@ -176,8 +176,9 @@ public class MSButton
       fill(55, 198, 255);
     }
     
+    strokeWeight(3);
     rect(x, y, width, height);
-    fill(255);
+    fill(0, 255, 0);
     textSize(width/2);
     text(myLabel, x+width/2, y+height/2);
   }
